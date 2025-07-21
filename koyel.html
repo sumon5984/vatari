@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>audio make 😂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans Bengali', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      height: 100vh;
+      margin: 0;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #4a148c;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    input, button {
+      font-size: 1.1rem;
+      padding: 12px;
+      margin-top: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+    }
+    input {
+      background: #f1f1f1;
+    }
+    button {
+      background: #7b1fa2;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #6a1b9a;
+    }
+    .download-btn {
+      background-color: #00796b;
+      margin-top: 10px;
+    }
+    .download-btn:hover {
+      background-color: #004d40;
+    }
+    audio {
+      margin-top: 20px;
+      width: 100%;
+    }
+    .footer {
+      margin-top: 40px;
+      color: #555;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>audio</h2>
+    <input type="text" id="nameInput" placeholder="enter name(e.g: koyel)" />
+    <button onclick="playAudio()">play</button>
+    <a id="downloadLink" class="download-btn" href="#" download="bengali-voice.mp3" style="display:none;">
+      <button class="download-btn">download</button>
+    </a>
+    <audio id="audioPlayer" controls></audio>
+  </div>
+
+  <div class="footer">
+    Made with ❤️ for sumon dev
+  </div>
+
+  <script>
+    function playAudio() {
+      const name = document.getElementById("nameInput").value.trim();
+      if (!name) return alert("enter vatari name!");
+
+      const sentence = `খানকি খানকি বড় খানকি ${name} আমাদের বরো খানকি যেদিন পাবো ল্যাংটো করে লাগাবো`;
+      const encodedText = encodeURIComponent(sentence);
+      const audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=bn&client=tw-ob&q=${encodedText}`;
+
+      // Play audio
+      const audio = document.getElementById("audioPlayer");
+      audio.src = audioUrl;
+      audio.play();
+
+      // Enable download
+      const downloadLink = document.getElementById("downloadLink");
+      downloadLink.href = audioUrl;
+      downloadLink.style.display = "inline-block";
+    }
+  </script>
+</body>
+</html>
